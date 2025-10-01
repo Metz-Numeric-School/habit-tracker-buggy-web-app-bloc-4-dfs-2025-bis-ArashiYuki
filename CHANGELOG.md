@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.2] - 2025-10-01
+
+### 📚 Documentation
+
+- Réponses questions.md & ajout information SSL, .env, vue finale et imports données dans la base de données
+
 ## [0.1.1] - 2025-10-01
 
 ### 📚 Documentation
