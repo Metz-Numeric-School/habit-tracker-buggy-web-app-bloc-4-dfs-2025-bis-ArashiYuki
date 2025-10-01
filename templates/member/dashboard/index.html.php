@@ -1,7 +1,7 @@
 <?php $layout = 'base.html.php'; ?>
 
 <div class="container py-5">
-    <h1 class="mb-4">Bonjour <?= $_SESSION['user']['firstname'] ?> !</h1>
+    <h1 class="mb-4">Bonjour <?= htmlspecialchars($_SESSION['user']['firstname'] ?? "", ENT_QUOTES, "UTF-8") ?> !</h1>
 
     <div class="row mb-4">
         <!-- Statistiques rapides -->
@@ -9,7 +9,7 @@
             <div class="card text-center shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Habitudes actives</h5>
-                    <p class="card-text display-4"><?= $stats['active_habits'] ?? 0 ?></p>
+                    <p class="card-text display-4"><?= htmlspecialchars($stats['active_habits'] ?? 0) ?></p>
                 </div>
             </div>
         </div>
@@ -17,7 +17,7 @@
             <div class="card text-center shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Jours consécutifs</h5>
-                    <p class="card-text display-4"><?= $stats['streak_days'] ?? 0 ?></p>
+                    <p class="card-text display-4"><?= htmlspecialchars($stats['streak_days'] ?? 0) ?></p>
                 </div>
             </div>
         </div>
@@ -25,7 +25,7 @@
             <div class="card text-center shadow-sm">
                 <div class="card-body">
                     <h5 class="card-title">Habitudes complétées aujourd'hui</h5>
-                    <p class="card-text display-4"><?= $stats['completed_today'] ?? 0 ?></p>
+                    <p class="card-text display-4"><?= htmlspecialchars($stats['completed_today'] ?? 0) ?></p>
                 </div>
             </div>
         </div>
@@ -47,11 +47,11 @@
                             <div class="col-md-4 mb-3">
                                 <div class="card shadow-sm">
                                     <div class="card-body">
-                                        <h5 class="card-title"><?= $habit->getName() ?></h5>
-                                        <p class="card-text"><?= $habit->getDescription() ?></p>
+                                        <h5 class="card-title"><?= htmlspecialchars($habit->getName() ?? "") ?></h5>
+                                        <p class="card-text"><?= htmlspecialchars($habit->getDescription() ?? "") ?></p>
 
                                         <form action="/habit/toggle" method="post" class="mb-2">
-                                            <input type="hidden" name="habit_id" value="<?= $habit->getId() ?>">
+                                            <input type="hidden" name="habit_id" value="<?= htmlspecialchars($habit->getId() ?? "") ?>">
                                             <button type="submit"
                                                 class="btn <?= $habit->isCompletedToday() ? 'btn-success' : 'btn-outline-success' ?> btn-sm">
                                                 <?= $habit->isCompletedToday() ? 'Fait ✅' : 'Marquer comme fait' ?>
@@ -61,14 +61,14 @@
                                         <p class="mb-1 text-muted">Progression 7 derniers jours :</p>
                                         <div class="progress mb-2">
                                             <div class="progress-bar" role="progressbar"
-                                                style="width: <?= $habit->getProgress(7) ?>%;"
-                                                aria-valuenow="<?= $habit->getProgress(7) ?>" aria-valuemin="0" aria-valuemax="100">
+                                                style="width: <?= htmlspecialchars($habit->getProgress(7) ?? 0) ?>%;"
+                                                aria-valuenow="<?= htmlspecialchars($habit->getProgress(7) ?? 0) ?>" aria-valuemin="0" aria-valuemax="100">
                                                 <?= $habit->getProgress(7) ?>%
                                             </div>
                                         </div>
 
                                         <small class="text-muted">
-                                            <?= $habit->isCompletedToday() ? 'Habitude faite aujourd’hui' : 'Non faite aujourd’hui' ?>
+                                            <?= htmlspecialchars($habit->isCompletedToday() ?? false) ? 'Habitude faite aujourd’hui' : 'Non faite aujourd’hui' ?>
                                         </small>
                                     </div>
                                 </div>

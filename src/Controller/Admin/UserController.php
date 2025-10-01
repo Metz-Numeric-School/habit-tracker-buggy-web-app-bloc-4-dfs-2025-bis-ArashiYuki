@@ -17,10 +17,15 @@ class UserController extends AbstractController
 
     public function index()
     {
-        $users = $this->userRepository->findAll();
-        return $this->render('admin/user/index.html.php', [
-            'users' => $users,
-        ]);
+		// $userId = $_SESSION['user']['id'];
+		// $user = $this->userRepository->find($userId);
+
+		// if ($user->getIsadmin()) {
+			$users = $this->userRepository->findAll();
+			return $this->render('admin/user/index.html.php', [
+				'users' => $users,
+			]);
+		// }
     }
 
     public function new()

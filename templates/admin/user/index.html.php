@@ -25,9 +25,9 @@
                 <tbody>
                     <?php foreach ($users as $user): ?>
                         <tr>
-                            <td><?php echo $user->getId() ?></td>
-                            <td><?php echo $user->getFirstname() ?> <?php echo $user->getLastname() ?></td>
-                            <td><?php echo $user->getEmail() ?></td>
+                            <td><?php echo htmlspecialchars($user->getId() ?? "") ?></td>
+                            <td><?php echo htmlspecialchars($user->getFirstname() ?? "") ?> <?php echo htmlspecialchars($user->getLastname() ?? "") ?></td>
+                            <td><?php echo htmlspecialchars($user->getEmail() ?? "") ?></td>
                             <td><?= $user->getIsadmin() ? "admin" : "user" ?></td>
                             <?php /*
                             <td>

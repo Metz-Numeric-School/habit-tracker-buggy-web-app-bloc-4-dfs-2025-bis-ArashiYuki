@@ -7,6 +7,16 @@ Afin de résoudre une faille de sécurité, les mots de passe utilisateurs de la
 
 Les identifiants de connexion à la base de données se trouvent dans le .env sur aaPanel.
 
+Attention, puisque le fichier `.env` était déjà présent dans le dépot github, celui-ci est poussé à chaque fois sur aaPanel avec les mauvais identifiants de base de données. Il faut remettre les bonnes valeurs pour le `.env` :
+
+```
+DB_HOST="localhost"
+DB_PORT="3306"
+DB_DATABASE="habit_tracker"
+DB_USERNAME="prod"
+DB_PASSWORD="azerty01"
+```
+
 # Présentation du projet
 
 MyHabitTracker est une application web conçu sur une architecture MVC et qui s'inspire de l'arborsence et du fonctionnement du framework Symfony.
