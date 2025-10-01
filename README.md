@@ -1,5 +1,12 @@
 # My Habits Tracker (A Buggy Web Application)
 
+
+Les identifants de connexion à aaPanel sont trouvable dans le fichier `/doc/DEPLOY.md`.
+
+Afin de résoudre une faille de sécurité, les mots de passe utilisateurs de la base de données ont été hashés mais restent "azertyuiop".
+
+Les identifiants de connexion à la base de données se trouvent dans le .env sur aaPanel.
+
 # Présentation du projet
 
 MyHabitTracker est une application web conçu sur une architecture MVC et qui s'inspire de l'arborsence et du fonctionnement du framework Symfony.

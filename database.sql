@@ -22,11 +22,11 @@ CREATE TABLE IF NOT EXISTS mns_user (
 
 -- Ajout d'un utilisateur admin
 INSERT INTO mns_user (firstname, lastname, email, password, isadmin) VALUES
-('Admin', 'HT', 'admin@ht-buggy-wapp.fr', 'azertyuiop', 1);
+('Admin', 'HT', 'admin@ht-buggy-wapp.fr', '$2y$10$.4UY3kD7IXNKAAAY3p.s/.UkbH8da6aQPdGh7DjQ4D.pHIvSNtAUm', 1);
 
 -- Ajout d'un utilisateur standard
 INSERT INTO mns_user (firstname, lastname, email, password, isadmin) VALUES
-('User', 'HT', 'user@ht-buggy-wapp.fr', 'azertyuiop', 0);
+('User', 'HT', 'user@ht-buggy-wapp.fr', '$2y$10$.4UY3kD7IXNKAAAY3p.s/.UkbH8da6aQPdGh7DjQ4D.pHIvSNtAUm', 0);
 
 -- Table des habitudes
 CREATE TABLE habits (
