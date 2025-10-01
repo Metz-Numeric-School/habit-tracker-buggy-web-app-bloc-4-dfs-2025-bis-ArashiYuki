@@ -51,6 +51,11 @@
         "controller": "App\\Controller\\Member\\HabitsController",
         "action": "new"
     },
+	{
+        "path": "/habit/toggle",
+        "controller": "App\\Controller\\Member\\HabitsController",
+        "action": "toggle"
+    },
     {
         "path": "/api/habits",
         "controller": "App\\Controller\\Api\\HabitsController",
