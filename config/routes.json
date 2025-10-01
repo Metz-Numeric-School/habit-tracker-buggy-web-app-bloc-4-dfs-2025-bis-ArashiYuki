@@ -35,6 +35,11 @@
         "controller": "App\\Controller\\Admin\\UserController",
         "action": "new"
     },
+	{
+        "path": "/admin/habits",
+        "controller": "App\\Controller\\Admin\\HabitsController",
+        "action": "index"
+    },
     {
         "path": "/dashboard",
         "controller": "App\\Controller\\Member\\DashboardController",
