@@ -33,7 +33,7 @@ Décrivez ci-dessous votre procédure de déploiement en détaillant chacune des
 3. Paramétrer le site en cliquant sur le nom du site créé puis `Site directory` :
    * Running directory (Répertoire d’exécution) : `/public` (étape 3.e)
    * Désactiver « Anti-XSS Attack » *(à activer si vous gérez correctement l’échappement côté code)*
-   * Activer SSL via Let's Encrypt (menu `SSL`)
+   * Activer SSL via Let's Encrypt (menu `SSL`) : le certificat SSL n'a pas pu être mis en place à cause de problème de connexion à l'API de Cloudflare "Verify fail, please check your Api Account and Password" après avoir suivi toutes les étapes de cette [vidéo](https://www.youtube.com/watch?v=aT18m7kalyc).
 
 ### c. Initialisation du dépôt distant (bare)
 
@@ -116,6 +116,8 @@ Décrivez ci-dessous votre procédure de déploiement en détaillant chacune des
 
 > 💡 le fichier `.env` contient des informations sensibles, il n'est donc pas versionné dans git (ignoré grâce au .gitignore)
 > Pensez à récupérer les informations de la base de données créée dans aaPanel depuis le menu "Databases"
+>
+> ⚠️ lors du premier commit (lors de la récupération du projet), le fichier .env était déjà présent. Il faut donc modifier les identifiants de connexion à la base de données
 
 4. Ajouter la base de données
    Il est impossible de se connecter avec root sans mot de passe. La création d'un nouvel utilisateur est donc nécessaire.
@@ -131,6 +133,7 @@ Décrivez ci-dessous votre procédure de déploiement en détaillant chacune des
 
      ![1759312570212](image/DEPLOY/1759312570212.png)
    - Enfin, allez dans le menu "Files", atteignez le fichier `.env` du site et mettez à jour les informations de connexion à la base de données
+   - Accédez à la base de données et importez les tables ainsi que leur contenu
 5. `composer install`
 
 Cette commande vous permet d'installer les packages nécessaires à votre projet. Lancez sur votre vps dans le dossier contenant votre site.
@@ -186,3 +189,7 @@ location / {
 ```
 
 puis sauvegardez le fichier
+
+### Final
+
+![1759314283494](image/DEPLOY/1759314283494.png)
