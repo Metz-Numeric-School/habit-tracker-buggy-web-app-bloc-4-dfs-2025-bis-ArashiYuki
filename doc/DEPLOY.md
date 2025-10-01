@@ -117,6 +117,35 @@ Décrivez ci-dessous votre procédure de déploiement en détaillant chacune des
 > 💡 le fichier `.env` contient des informations sensibles, il n'est donc pas versionné dans git (ignoré grâce au .gitignore)
 > Pensez à récupérer les informations de la base de données créée dans aaPanel depuis le menu "Databases"
 
+4. Ajouter la base de données
+   Il est impossible de se connecter avec root sans mot de passe. La création d'un nouvel utilisateur est donc nécessaire.
+   - Rendez vous sur le phpMyAdmin où est sauvegardée votre base de données : [http://localhost/phpmyadmin](http://localhost/phpmyadmin)
+   - Sélectionnez votre base de données (ici habit_tracker)
+   - Rendez vous dans l'onglet "Privilèges" et cliquez sur "Ajouter un utilisateur"
+
+     ![1759312407557](image/DEPLOY/1759312407557.png)
+   - Créez un utilisateur en lui donnant tous les droits
+   - Rendez vous sur aaPanel puis dans le menu "Databases"
+   - Cliquez sur AddDB
+   - Renseignez les informations de la base de données avec les identifiants du nouvel utilisateur et confirmez
+
+     ![1759312570212](image/DEPLOY/1759312570212.png)
+   - Enfin, allez dans le menu "Files", atteignez le fichier `.env` du site et mettez à jour les informations de connexion à la base de données
+5. `composer install`
+
+Cette commande vous permet d'installer les packages nécessaires à votre projet. Lancez sur votre vps dans le dossier contenant votre site.
+
+> ⚠️ Il est possible que aaPanel bloque la commande `composer install`. Si c'est le cas, allez sur aaPanel puis Il faut enlevez putenv du fichier de configuration du php du site : App Store > ligne PHP > Setting > Configuration file > l.333 (disable_functions -> retirer putenv)
+
+Vous pourriez aussi rencontrer cette erreur :
+
+![1759307405617](image/DEPLOY/1759307405617.png)
+
+Il existe 2 solutions :
+
+* téléverser les bibliothèques (redondant est long)
+* comme pour `putenv` retirez `proc_open` du fichier de configuration PHP
+
 ### c. Fichier de déploiement automatisé
 
 ```bash
@@ -141,5 +170,19 @@ Pour l'exécuter, 2 solutions :
   * `/var/depot_git/deploy.sh <version>`
 
 > 💡 `<version>` est le tag (cf. Méthode de déploiement - Déploiement des modifications)
->
-> ⚠️ il est possible que aaPanel bloque la commande `composer install`. Si c'est le cas, allez sur aaPanel puis Il faut enlevez putenv du fichier de configuration du php du site : App Store > ligne PHP > Setting > Configuration file > l.333 (disable_functions -> retirer putenv)
+
+### Gestion des routes
+
+Les routes ne sont pas accessibles en dehors de l'accueil :
+
+![1759309055398](image/DEPLOY/1759309055398.png)
+
+Il faut activer la redirection sur le site. Pour cela, rendez-vous sur aaPanel puis dans "Website". Cliquez sur votre nom de domaine allez dans le sous menu "URL rewrite" et ajouter
+
+```
+location / {
+    try_files $uri $uri/ /index.php$is_args$args;
+}
+```
+
+puis sauvegardez le fichier
