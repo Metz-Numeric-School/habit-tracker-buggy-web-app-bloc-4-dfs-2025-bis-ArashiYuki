@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file.
 
+## [0.1.1] - 2025-10-01
+
+### 📚 Documentation
+
+- Ajout paragraphe gestion routes et connexion à la base de données
+
 ## [0.1.0] - 2025-10-01
 
 ### 📚 Documentation
